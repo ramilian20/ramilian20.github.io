@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>El Rincón del Sabor - Menú</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #ff0000; /* Rojo vibrante */
+        --secondary-color: #ffd700; /* Amarillo dorado */
+        --text-color: #333333;
+        --light-text-color: #ffffff;
+        --background-color: #fdfdfd;
+        --card-bg-color: #ffffff;
+        --shadow-color: rgba(0, 0, 0, 0.1);
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        line-height: 1.6;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px 0;
+      }
+
+      header {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          #c00000 100%
+        );
+        color: var(--light-text-color);
+        padding: 40px 0 60px;
+        text-align: center;
+        border-bottom: 5px solid var(--secondary-color);
+      }
+
+      header h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 3.5em;
+        margin: 0;
+        letter-spacing: 1px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      header p.tagline {
+        font-size: 1.2em;
+        margin-top: 10px;
+        opacity: 0.9;
+      }
+
+      .menu-section {
+        padding: 40px 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .menu-section:last-child {
+        border-bottom: none;
+      }
+
+      .menu-section h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5em;
+        color: var(--primary-color);
+        text-align: center;
+        margin-bottom: 40px;
+        position: relative;
+      }
+
+      .menu-section h2::after {
+        content: "";
+        display: block;
+        width: 80px;
+        height: 3px;
+        background-color: var(--secondary-color);
+        margin: 10px auto 0;
+      }
+
+      .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .menu-item {
+        background-color: var(--card-bg-color);
+        border-radius: 10px;
+        box-shadow: 0 5px 15px var(--shadow-color);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .menu-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .menu-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-bottom: 3px solid var(--secondary-color);
+      }
+
+      .menu-item-content {
+        padding: 20px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .menu-item h3 {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 1.4em;
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: var(--primary-color);
+      }
+
+      .menu-item .ingredients {
+        font-size: 0.9em;
+        color: #555;
+        margin-bottom: 15px;
+        flex-grow: 1;
+      }
+
+      .menu-item .price {
+        font-size: 1.3em;
+        font-weight: 700;
+        color: var(--text-color);
+        text-align: right;
+        margin-top: auto;
+      }
+
+      .price-currency {
+        font-size: 0.7em;
+        vertical-align: super;
+        margin-left: 2px;
+      }
+
+      .section-note {
+        text-align: center;
+        font-style: italic;
+        color: #666;
+        margin-top: 20px;
+        background-color: #fff9e6;
+        padding: 15px;
+        border-radius: 5px;
+        border-left: 5px solid var(--secondary-color);
+      }
+
+      footer {
+        background-color: var(--text-color);
+        color: var(--light-text-color);
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 40px;
+      }
+
+      footer p {
+        margin: 0;
+        font-size: 0.9em;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 2.5em;
+        }
+        .menu-section h2 {
+          font-size: 2em;
+        }
+        .menu-item h3 {
+          font-size: 1.2em;
+        }
+      }
+      @media (max-width: 480px) {
+        .menu-grid {
+          grid-template-columns: 1fr;
+        }
+        header h1 {
+          font-size: 2em;
+        }
+        header p.tagline {
+          font-size: 1em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>El Rincón del Sabor</h1>
+        <p class="tagline">Donde cada bocado es una experiencia inolvidable.</p>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Sección Hamburguesas -->
+      <section class="menu-section" id="hamburguesas">
+        <h2>Nuestras Hamburguesas</h2>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <img
+              src="/assets/img/hamburguesa-normal.jpg"
+              alt="Hamburguesa Normal"
+            />
+            <div class="menu-item-content">
+              <h3>Hamburguesa Normal</h3>
+              <p class="ingredients">
+                Carne de hamburguesa, jamón, queso mozzarella, tocineta,
+                verduras frescas.
+              </p>
+              <p class="price">1.50 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img
+              src="/assets/img/hamburguesa-normal.jpg"
+              alt="Hamburguesa Mixta Carne y Esmechada"
+            />
+            <div class="menu-item-content">
+              <h3>Hamburguesa Mixta (Carne y Esmechada)</h3>
+              <p class="ingredients">
+                Carne de hamburguesa, jamón, queso mozzarella, tocineta, carne
+                esmechada, verduras.
+              </p>
+              <p class="price">2.50 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img
+              src="/assets/img/hamburguesa-normal.jpg"
+              alt="Hamburguesa Mixta Carne y Pollo"
+            />
+            <div class="menu-item-content">
+              <h3>Hamburguesa Mixta (Carne y Pollo)</h3>
+              <p class="ingredients">
+                Carne asada, pollo asado, jamón, queso mozzarella, tocineta,
+                verduras.
+              </p>
+              <p class="price">2.50 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img
+              src="/assets/img/hamburguesa-normal.jpg"
+              alt="Hamburguesa Full"
+            />
+            <div class="menu-item-content">
+              <h3>Hamburguesa Full</h3>
+              <p class="ingredients">
+                Carne de hamburguesa, carne asada, pollo asado, jamón, queso
+                mozzarella, tocineta, verduras.
+              </p>
+              <p class="price">4.00 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección Salchipapas -->
+      <section class="menu-section" id="salchipapas">
+        <h2>Deliciosas Salchipapas</h2>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <img src="/assets/img/salchipapa.jpg" alt="Salchipapa Pequeña" />
+            <div class="menu-item-content">
+              <h3>Salchipapa Pequeña</h3>
+              <p class="ingredients">
+                Papas fritas, salchicha, carne asada, chorizo asado, pollo
+                asado, queso mozzarella, verduras.
+              </p>
+              <p class="price">5.00 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img src="/assets/img/salchipapa.jpg" alt="Salchipapa Grande" />
+            <div class="menu-item-content">
+              <h3>Salchipapa Grande</h3>
+              <p class="ingredients">
+                Papas fritas, salchicha, carne asada, chorizo asado, pollo
+                asado, queso mozzarella, verduras.
+              </p>
+              <p class="price">7.50 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img
+              src="/assets/img/salchipapa.jpg"
+              alt="Salchipapa Extra Grande"
+            />
+            <div class="menu-item-content">
+              <h3>Salchipapa Extra Grande</h3>
+              <p class="ingredients">
+                Papas fritas, salchicha, carne asada, chorizo asado, pollo
+                asado, queso mozzarella, verduras.
+              </p>
+              <p class="price">10.00 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección Perros Calientes -->
+      <section class="menu-section" id="perros">
+        <h2>Perros Calientes Únicos</h2>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <img src="/assets/img/perros.webp" alt="Perro Caliente Normal" />
+            <div class="menu-item-content">
+              <h3>Perro Caliente Normal</h3>
+              <p class="ingredients">
+                Salchicha, queso en polvo, papitas de perro, verduras.
+              </p>
+              <p class="price">1.00 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img
+              src="/assets/img/perros.webp"
+              alt="Perro Caliente con Carne Esmechada"
+            />
+            <div class="menu-item-content">
+              <h3>Perro Caliente con Carne Esmechada</h3>
+              <p class="ingredients">
+                Salchicha, carne esmechada, queso en polvo, papitas de perro,
+                verduras.
+              </p>
+              <p class="price">1.75 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección Arepas y Patacones -->
+      <section class="menu-section" id="arepas-patacones">
+        <h2>Sabor Venezolano: Arepas y Patacones</h2>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <img src="/assets/img/arepas.webp" alt="Arepa Moderna" />
+            <div class="menu-item-content">
+              <h3>Arepa Moderna</h3>
+              <p class="ingredients">
+                Carne esmechada, pollo asado, carne asada, queso mozzarella,
+                jamón, tocineta, verduras.
+              </p>
+              <p class="price">3.00 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img src="/assets/img/patacon.webp" alt="Patacón Pequeño" />
+            <div class="menu-item-content">
+              <h3>Patacón Pequeño</h3>
+              <p class="ingredients">
+                Carne esmechada, pollo asado, carne asada, queso mozzarella,
+                jamón, tocineta, queso en polvo, verduras.
+              </p>
+              <p class="price">5.00 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img src="/assets/img/patacon.webp" alt="Patacón Grande" />
+            <div class="menu-item-content">
+              <h3>Patacón Grande</h3>
+              <p class="ingredients">
+                Carne esmechada, pollo asado, carne asada, queso mozzarella,
+                jamón, tocineta, queso en polvo, verduras.
+              </p>
+              <p class="price">7.50 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección Pizzas -->
+      <section class="menu-section" id="pizzas">
+        <h2>Pizzas Artesanales</h2>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <img src="/assets/img/pizza.webp" alt="Pizza Pequeña" />
+            <div class="menu-item-content">
+              <h3>Pizza Pequeña</h3>
+              <p class="ingredients">
+                Salsa de tomate, jamón, queso mozzarella.
+              </p>
+              <p class="price">3.00 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img src="assets/img/pizza.webp" alt="Pizza Mediana" />
+            <div class="menu-item-content">
+              <h3>Pizza Mediana</h3>
+              <p class="ingredients">
+                Salsa de tomate, jamón, queso mozzarella.
+              </p>
+              <p class="price">4.00 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img src="/assets/img/pizza.webp" alt="Pizza Familiar" />
+            <div class="menu-item-content">
+              <h3>Pizza Familiar</h3>
+              <p class="ingredients">
+                Salsa de tomate, jamón, queso mozzarella.
+              </p>
+              <p class="price">5.00 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img
+              src="/assets/img/pizza.webp"
+              alt="Pizza Pequeña Borde de Queso"
+            />
+            <div class="menu-item-content">
+              <h3>Pizza Pequeña Borde de Queso</h3>
+              <p class="ingredients">
+                Salsa de tomate, jamón, queso mozzarella, borde relleno de
+                queso.
+              </p>
+              <p class="price">4.00 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img
+              src="/assets/img/pizza.webp"
+              alt="Pizza Mediana Borde de Queso"
+            />
+            <div class="menu-item-content">
+              <h3>Pizza Mediana Borde de Queso</h3>
+              <p class="ingredients">
+                Salsa de tomate, jamón, queso mozzarella, borde relleno de
+                queso.
+              </p>
+              <p class="price">5.00 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img
+              src="/assets/img/pizza.webp"
+              alt="Pizza Familiar Borde de Queso"
+            />
+            <div class="menu-item-content">
+              <h3>Pizza Familiar Borde de Queso</h3>
+              <p class="ingredients">
+                Salsa de tomate, jamón, queso mozzarella, borde relleno de
+                queso.
+              </p>
+              <p class="price">7.00 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="section-note">
+          <p>
+            <strong>Adicionales para tu Pizza:</strong> Champiñones, maíz,
+            tocineta, pepperoni. <br /><strong>Precio por adicional:</strong>
+            1.00 <span class="price-currency">USD</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- Sección Combos -->
+      <section class="menu-section" id="combos">
+        <h2>Combos para Compartir</h2>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <img src="/assets/img/combo-pizza.webp" alt="Combo Pizza" />
+            <div class="menu-item-content">
+              <h3>Combo Pizzero</h3>
+              <p class="ingredients">
+                2 Pizzas Familiares + Refresco de 1.5 Litros.
+              </p>
+              <p class="price">10.00 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img src="/assets/img/perros.webp" alt="Combo Perros" />
+            <div class="menu-item-content">
+              <h3>Combo Perros x4</h3>
+              <p class="ingredients">
+                4 Perros Calientes Normales + Refresco de 1.5 Litros.
+              </p>
+              <p class="price">5.00 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img src="/assets/img/perros.webp" alt="Combo Perros Grande" />
+            <div class="menu-item-content">
+              <h3>Combo Perros x9</h3>
+              <p class="ingredients">
+                9 Perros Calientes Normales + Refresco de 1.5 Litros.
+              </p>
+              <p class="price">10.00 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img
+              src="/assets/img/combo-hamburguesa.webp"
+              alt="Combo Hamburguesas"
+            />
+            <div class="menu-item-content">
+              <h3>Combo Hamburguesas x3</h3>
+              <p class="ingredients">
+                3 Hamburguesas Normales + Refresco de 1.5 Litros.
+              </p>
+              <p class="price">5.00 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img
+              src="/assets/img/combo-hamburguesa.webp"
+              alt="Combo Hamburguesas Grande"
+            />
+            <div class="menu-item-content">
+              <h3>Combo Hamburguesas x7</h3>
+              <p class="ingredients">
+                7 Hamburguesas Normales + Refresco de 1.5 Litros.
+              </p>
+              <p class="price">10.00 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección Bebidas -->
+      <section class="menu-section" id="bebidas">
+        <h2>Bebidas Refrescantes</h2>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <img src="/assets/img/refresco.jpg" alt="Refresco 1.5L" />
+            <div class="menu-item-content">
+              <h3>Refresco 1.5 Litros</h3>
+              <p class="ingredients">Variedad de sabores.</p>
+              <p class="price">1.50 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img src="/assets/img/jugo-valle.webp" alt="Jugo del Valle 1.5L" />
+            <div class="menu-item-content">
+              <h3>Jugo del Valle 1 Litro</h3>
+              <p class="ingredients">Sabores surtidos.</p>
+              <p class="price">1.50 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img src="/assets/img/baso-refresco.webp" alt="Refresco de Vaso" />
+            <div class="menu-item-content">
+              <h3>Refresco de Vaso</h3>
+              <p class="ingredients">Directo de la máquina.</p>
+              <p class="price">0.50 <span class="price-currency">USD</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>
+          © <span id="currentYear"></span> El Rincón del Sabor. Todos los
+          derechos reservados.
+        </p>
+        <p>¡Te esperamos para deleitar tu paladar!</p>
+        <!-- Aquí podrías añadir tu dirección, teléfono, redes sociales, etc. -->
+        <p>Telefono</p>
+        0412-791-77-53
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+    </script>
+  </body>
+</html>
